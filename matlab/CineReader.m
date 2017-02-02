@@ -43,14 +43,15 @@ classdef CineReader < CineReaderRaw
         function im = postprocess(this, im)
            im = flipud(im');
            % Demosaic
-           im = demosaic(im, this.CFA);
+%            im = demosaic(im, this.CFA); % removed to avoid color images
            
            % Color correction                                                       
            im = im*this.Gain; % Gain
            
            % White Balance
-           im(:,:,1) = im(:,:,1).*this.WhiteBalanceRedGain;
-           im(:,:,3) = im(:,:,3).*this.WhiteBalanceBlueGain;
+%            im(:,:,1) = im(:,:,1).*this.WhiteBalanceRedGain; % not needed
+%            for bw camaera
+%            im(:,:,3) = im(:,:,3).*this.WhiteBalanceBlueGain;
            
            % Brightness
            im = im + 0.255*this.Brightness;% Brightness
